@@ -3,6 +3,8 @@ package com.example.BE_employees_performance.controllers;
 import com.example.BE_employees_performance.dto.request.AccountRequest;
 import com.example.BE_employees_performance.dto.response.AccountResponse;
 import com.example.BE_employees_performance.dto.response.ApiResponse;
+import com.example.BE_employees_performance.dto.response.KPINameResponse;
+import com.example.BE_employees_performance.services.KPIServices;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -10,22 +12,23 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import com.example.BE_employees_performance.services.AccountServices;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/kpi")
 @RequiredArgsConstructor
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class AccountControllers {
-    AccountServices accountServices;
+public class KPIControllers {
+    KPIServices kpiServices;
 
-    @PostMapping("/login")
-    public ApiResponse<AccountResponse> loginAction(@RequestBody AccountRequest data){
-        log.info("Login result: {}", accountServices.loginAccount(data) == null);
-        return ApiResponse.<AccountResponse>builder()
-                .status(200)
-                .message("Login successfully")
-                .data(accountServices.loginAccount(data))
-                .build();
+    @GetMapping("/getAllName")
+    public ApiResponse<List<KPINameResponse>> getAllName(){
+        ApiResponse<List<KPINameResponse>> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all successfully");
+        apiResponse.setData(kpiServices.getAllName());
+        return apiResponse;
     }
 
 }

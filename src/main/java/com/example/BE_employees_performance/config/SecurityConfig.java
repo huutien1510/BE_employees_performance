@@ -38,7 +38,9 @@ public class SecurityConfig {
             "/kpi",
             "/kpi/**",
             "/kpa",
-            "/kpa/**"
+            "/kpa/**",
+            "/assessment",
+            "/assessment/**"
 
     };
     @Value("${signer.key}")

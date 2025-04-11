@@ -25,6 +25,7 @@ public class AssessmentControllers {
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all assessment by employee successfully");
         apiResponse.setData(assessmentServices.getAllAssessmentByEmployee(employeeID));
+        log.info(apiResponse.getData().toString());
         return apiResponse;
     }
 }

@@ -25,4 +25,5 @@ public class AssessmentReponse {
     private Integer evaluate;
     private String comments;
     private String link;
+    private boolean isReviewed;
 }

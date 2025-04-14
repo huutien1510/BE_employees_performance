@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -21,6 +24,10 @@ public class Assessment  {
     private Employees employee;
 
     @ManyToOne
+    @JoinColumn(name = "line_manager_id")
+    private Employees lineManager;
+
+    @ManyToOne
     @JoinColumn(name = "kpa_id")
     private Kpa kpa;
 
@@ -31,4 +38,7 @@ public class Assessment  {
     private Integer evaluate;
     private String comments;
     private String link;
+    private Date createdAt;
+    private Date updateAt;
+
 }

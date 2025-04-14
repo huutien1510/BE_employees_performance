@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -25,4 +28,7 @@ public class Kpa  {
     @ManyToOne
     @JoinColumn(name = "kpi_id")
     private Kpi kpi;
+
+    private Date createdAt;
+    private Date updateAt;
 }

@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,32 @@ public class AssessmentControllers {
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all assessment by employee successfully");
         apiResponse.setData(assessmentServices.getAllAssessmentByEmployee(employeeID));
-        log.info(apiResponse.getData().toString());
         return apiResponse;
     }
+
+
+    @GetMapping("/getAllAssessment")
+    public ApiResponse<List<AssessmentReponse>> getAllAssessment(@RequestParam(defaultValue = "0") Integer page,
+                                                                 @RequestParam(defaultValue = "10") Integer size){
+        ApiResponse<List<AssessmentReponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all assessment successfully");
+        apiResponse.setData(assessmentServices.getAllAssessment(page,size));
+        return apiResponse;
+    }
+
+
+
+    @GetMapping("/getTotalElements")
+    public ApiResponse<Integer> getTotalElements(@RequestParam(defaultValue = "0") Integer page,
+                                                                 @RequestParam(defaultValue = "10") Integer size){
+        ApiResponse<Integer> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all assessment successfully");
+        apiResponse.setData(assessmentServices.getTotalElements());
+        return apiResponse;
+    }
+
+
+
 }

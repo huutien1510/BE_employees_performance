@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -28,4 +31,7 @@ public class Employees {
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Departments department;
+
+    private Date createdAt;
+    private Date updateAt;
 }

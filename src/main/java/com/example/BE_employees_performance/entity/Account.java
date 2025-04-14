@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -26,4 +29,7 @@ public class Account {
 
     @Column(length = 20)
     private String accRole;
+
+    private Date createdAt;
+    private Date updateAt;
 }

@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -26,4 +29,7 @@ public class ManageInfo {
 
     private java.sql.Date startDate;
     private java.sql.Date endDate;
+
+    private Date createdAt;
+    private Date updateAt;
 }

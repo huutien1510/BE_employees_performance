@@ -1,6 +1,7 @@
 package com.example.BE_employees_performance.controllers;
 
 import com.example.BE_employees_performance.dto.response.ApiResponse;
+import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
 import com.example.BE_employees_performance.dto.response.AssessmentReponse;
 import com.example.BE_employees_performance.services.AssessmentServices;
 import lombok.AccessLevel;
@@ -43,12 +44,12 @@ public class AssessmentControllers {
 
 
     @GetMapping("/getTotalElements")
-    public ApiResponse<Integer> getTotalElements(@RequestParam(defaultValue = "0") Integer page,
-                                                                 @RequestParam(defaultValue = "10") Integer size){
-        ApiResponse<Integer> apiResponse =  new ApiResponse<>();
+    public ApiResponse<AssessmentPageParameters> getTotalElements(@RequestParam(defaultValue = "0") Integer page,
+                                                                  @RequestParam(defaultValue = "10") Integer size){
+        ApiResponse<AssessmentPageParameters> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
-        apiResponse.setMessage("Get all assessment successfully");
-        apiResponse.setData(assessmentServices.getTotalElements());
+        apiResponse.setMessage("Get totals elements successfully");
+        apiResponse.setData(assessmentServices.getAssessmentPageParameters());
         return apiResponse;
     }
 

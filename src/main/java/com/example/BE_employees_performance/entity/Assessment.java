@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Columns;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -36,9 +37,11 @@ public class Assessment  {
     private Kpi kpi;
 
     private Integer evaluate;
+
+    @Column(columnDefinition = "text")
     private String comments;
     private String link;
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 
 }

@@ -28,5 +28,5 @@ public class Kpi {
     private String description;
 
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 }

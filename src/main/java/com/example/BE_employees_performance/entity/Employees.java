@@ -33,5 +33,5 @@ public class Employees {
     private Departments department;
 
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 }

@@ -1,5 +1,6 @@
 package com.example.BE_employees_performance.services;
 
+import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
 import com.example.BE_employees_performance.dto.response.AssessmentReponse;
 import com.example.BE_employees_performance.repository.AssessmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class AssessmentServices {
     }
 
 
-    public Integer getTotalElements(){
-        return  assessmentRepository.getTotalElements();
+    public AssessmentPageParameters getAssessmentPageParameters(){
+        return assessmentRepository.getAssessmentPageParameters();
     }
 }

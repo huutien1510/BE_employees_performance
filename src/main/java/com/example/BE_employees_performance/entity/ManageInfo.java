@@ -31,5 +31,5 @@ public class ManageInfo {
     private java.sql.Date endDate;
 
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 }

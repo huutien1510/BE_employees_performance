@@ -31,5 +31,5 @@ public class Departments {
     private Employees functionHead;
 
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 }

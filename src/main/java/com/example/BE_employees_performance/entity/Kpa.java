@@ -30,5 +30,5 @@ public class Kpa  {
     private Kpi kpi;
 
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 }

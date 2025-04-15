@@ -31,5 +31,5 @@ public class Account {
     private String accRole;
 
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 }

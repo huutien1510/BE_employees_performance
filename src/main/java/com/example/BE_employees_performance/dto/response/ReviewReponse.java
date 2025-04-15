@@ -1,14 +1,8 @@
 package com.example.BE_employees_performance.dto.response;
 
-import com.example.BE_employees_performance.entity.Employees;
-import com.example.BE_employees_performance.entity.Kpa;
-import com.example.BE_employees_performance.entity.Kpi;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -16,7 +10,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AssessmentReponse {
+public class ReviewReponse {
+    private Integer reviewId;
     private Integer assessmentId;
     private Integer employeeId;
     private String employeeName;
@@ -28,9 +23,10 @@ public class AssessmentReponse {
     private String kpaName;
     private Integer kpiId;
     private String kpiName;
+    private Integer employeeEvaluate;
+    private String employeeLink;
     private Integer evaluate;
     private String comments;
-    private String link;
     private String status;
     private Date updatedAt;
 }

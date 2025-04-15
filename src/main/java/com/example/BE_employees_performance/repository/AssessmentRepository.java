@@ -1,5 +1,6 @@
 package com.example.BE_employees_performance.repository;
 
+import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
 import com.example.BE_employees_performance.dto.response.AssessmentReponse;
 import com.example.BE_employees_performance.entity.Assessment;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,6 @@ public interface AssessmentRepository extends JpaRepository<Assessment,Integer> 
     @Query(value = "call get_all_assessment(:pages,:size)", nativeQuery = true)
     public List<AssessmentReponse> getAllAssessment(@Param("pages") Integer page, @Param("size") Integer size);
 
-    @Query(value = "select count(assessment_id) from assessment;", nativeQuery = true)
-    public Integer getTotalElements();
+    @Query(value = "call get_assessment_page_parameters", nativeQuery = true)
+    public AssessmentPageParameters getAssessmentPageParameters();
 }

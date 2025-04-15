@@ -46,5 +46,5 @@ public class Review  {
     private Boolean isReviewed;
 
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 }

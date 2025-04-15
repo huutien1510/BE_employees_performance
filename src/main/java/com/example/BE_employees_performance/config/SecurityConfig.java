@@ -40,8 +40,9 @@ public class SecurityConfig {
             "/kpa",
             "/kpa/**",
             "/assessment",
-            "/assessment/**"
-
+            "/assessment/**",
+            "/employees",
+            "/employees/**"
     };
     @Value("${signer.key}")
     private String SIGNER_KEY;

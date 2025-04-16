@@ -42,7 +42,9 @@ public class SecurityConfig {
             "/assessment",
             "/assessment/**",
             "/employees",
-            "/employees/**"
+            "/employees/**",
+            "/reviews",
+            "/reviews/**",
     };
     @Value("${signer.key}")
     private String SIGNER_KEY;

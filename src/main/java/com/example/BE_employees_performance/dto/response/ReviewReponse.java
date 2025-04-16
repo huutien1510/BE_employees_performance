@@ -16,14 +16,17 @@ public class ReviewReponse {
     private Integer employeeId;
     private String employeeName;
     private String employeeJobTitle;
+    private String employeeAvatar;
     private Integer lineManagerId;
     private String lineManagerName;
     private String lineManagerJobTitle;
+    private String lineManagerAvatar;
     private Integer kpaId;
     private String kpaName;
     private Integer kpiId;
     private String kpiName;
     private Integer employeeEvaluate;
+    private String employeeComments;
     private String employeeLink;
     private Integer evaluate;
     private String comments;

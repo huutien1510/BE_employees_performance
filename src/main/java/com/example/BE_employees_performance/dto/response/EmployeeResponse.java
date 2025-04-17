@@ -25,6 +25,8 @@ public class EmployeeResponse {
     private Integer lineManagerId;
     private String lineManagerName;
     private String lineManagerJobTitle;
+    private String lineManagerMail;
+    private String lineManagerAvatar;
     private Integer departmentId;
     private String departmentName;
 }

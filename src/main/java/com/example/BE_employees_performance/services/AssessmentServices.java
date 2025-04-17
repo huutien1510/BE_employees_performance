@@ -18,8 +18,13 @@ import java.util.List;
 public class AssessmentServices {
     AssessmentRepository assessmentRepository;
 
-    public List<AssessmentReponse> getAllAssessmentByEmployee(Integer employeeID){
-        return assessmentRepository.getAllAssessmentByEmployee(employeeID);
+    public List<AssessmentReponse> getAllAssessmentByEmployee(Integer employeeID, Integer page, Integer size){
+        return assessmentRepository.getAllAssessmentByEmployee(employeeID,page,size);
+    }
+
+
+    public AssessmentPageParameters getAssessmentByEmployeePageParameters(Integer employeeId){
+        return assessmentRepository.getAssessmentByEmployeePageParameters(employeeId);
     }
 
 

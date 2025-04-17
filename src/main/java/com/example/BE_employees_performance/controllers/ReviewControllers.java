@@ -47,6 +47,7 @@ public class ReviewControllers {
     public ApiResponse<Object> evaluateAssessment(HttpServletRequest link,
                                                   @PathVariable Integer assessmentId,
                                                   @RequestBody EvaluateAssessmentRequest body){
+        log.info(link.getHeader("token"));
         ApiResponse<Object> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Update evaluate assessment successfully");

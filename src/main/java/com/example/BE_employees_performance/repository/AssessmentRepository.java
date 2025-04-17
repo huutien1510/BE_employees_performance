@@ -13,8 +13,11 @@ import java.util.List;
 
 @Repository
 public interface AssessmentRepository extends JpaRepository<Assessment,Integer> {
-    @Query(value = "call get_all_assessment_by_employee(:employee_id)", nativeQuery = true)
-    public List<AssessmentReponse> getAllAssessmentByEmployee(@Param("employee_id") Integer employeeID);
+    @Query(value = "call get_all_assessment_by_employee(:employee_id,:pages,:size)", nativeQuery = true)
+    public List<AssessmentReponse> getAllAssessmentByEmployee(@Param("employee_id") Integer employeeID,@Param("pages") Integer page, @Param("size") Integer size);
+
+    @Query(value = "call get_assessment_by_employee_page_parameters(:employee_id)", nativeQuery = true)
+    public AssessmentPageParameters getAssessmentByEmployeePageParameters(@Param("employee_id") Integer employeeID);
 
     @Query(value = "call get_all_assessment(:pages,:size)", nativeQuery = true)
     public List<AssessmentReponse> getAllAssessment(@Param("pages") Integer page, @Param("size") Integer size);

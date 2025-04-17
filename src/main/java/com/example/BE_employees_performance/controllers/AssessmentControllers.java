@@ -22,11 +22,23 @@ public class AssessmentControllers {
     AssessmentServices assessmentServices;
 
     @GetMapping("/getAllAssessmentByEmployee/{employeeID}")
-    public ApiResponse<List<AssessmentReponse>> getAllAssessmentByEmployee(@PathVariable Integer employeeID){
+    public ApiResponse<List<AssessmentReponse>> getAllAssessmentByEmployee(@PathVariable Integer employeeID,
+                                                                           @RequestParam(defaultValue = "0") Integer page,
+                                                                           @RequestParam(defaultValue = "10") Integer size){
         ApiResponse<List<AssessmentReponse>> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all assessment by employee successfully");
-        apiResponse.setData(assessmentServices.getAllAssessmentByEmployee(employeeID));
+        apiResponse.setData(assessmentServices.getAllAssessmentByEmployee(employeeID,page,size));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/getTotalElementsByEmployee/{employeeId}")
+    public ApiResponse<AssessmentPageParameters> getAssessmentByEmployeePageParameters(@PathVariable Integer employeeId){
+        ApiResponse<AssessmentPageParameters> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get totals elements successfully");
+        apiResponse.setData(assessmentServices.getAssessmentByEmployeePageParameters(employeeId));
         return apiResponse;
     }
 
@@ -44,8 +56,7 @@ public class AssessmentControllers {
 
 
     @GetMapping("/getTotalElements")
-    public ApiResponse<AssessmentPageParameters> getTotalElements(@RequestParam(defaultValue = "0") Integer page,
-                                                                  @RequestParam(defaultValue = "10") Integer size){
+    public ApiResponse<AssessmentPageParameters> getTotalElements(){
         ApiResponse<AssessmentPageParameters> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get totals elements successfully");

@@ -32,9 +32,20 @@ public class ReviewControllers {
     }
 
 
+    @GetMapping("/getAllReviewsByEmployee/{accountId}")
+    public ApiResponse<List<ReviewReponse>> getAllReviewsByEmployee(@PathVariable("accountId") Integer accountId,
+                                                                    @RequestParam(defaultValue = "0") Integer page,
+                                                                    @RequestParam(defaultValue = "10") Integer size){
+        ApiResponse<List<ReviewReponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all reviews by employee successfully");
+        apiResponse.setData(reviewServices.getAllReviewsByEmployee(accountId,page,size));
+        return apiResponse;
+    }
+
+
     @GetMapping("/getTotalElements")
-    public ApiResponse<ReviewPageParameters> getTotalElements(@RequestParam(defaultValue = "0") Integer page,
-                                                              @RequestParam(defaultValue = "10") Integer size){
+    public ApiResponse<ReviewPageParameters> getTotalElements(){
         ApiResponse<ReviewPageParameters> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get totals elements successfully");
@@ -43,11 +54,20 @@ public class ReviewControllers {
     }
 
 
+    @GetMapping("/getTotalElementsByEmployee/{accountId}")
+    public ApiResponse<ReviewPageParameters> getTotalElementsByEmployee(@PathVariable("accountId") Integer accountId){
+        ApiResponse<ReviewPageParameters> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get totals elements by employee successfully");
+        apiResponse.setData(reviewServices.getReviewPageParametersByEmployee(accountId));
+        return apiResponse;
+    }
+
+
     @PatchMapping("/evaluateAssessment/{assessmentId}")
     public ApiResponse<Object> evaluateAssessment(HttpServletRequest link,
                                                   @PathVariable Integer assessmentId,
                                                   @RequestBody EvaluateAssessmentRequest body){
-        log.info(link.getHeader("token"));
         ApiResponse<Object> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Update evaluate assessment successfully");

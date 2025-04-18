@@ -9,10 +9,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +29,17 @@ public class EmployeeControllers {
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all employees successfully");
         apiResponse.setData(employeeServices.getAllEmployees(page,size));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/getEmployeeById/{accountId}")
+    public ApiResponse<EmployeeResponse> getEmployeeById(@PathVariable Integer accountId)
+    {
+        ApiResponse<EmployeeResponse> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all employees successfully");
+        apiResponse.setData(employeeServices.getEmployeeById(accountId));
         return apiResponse;
     }
 

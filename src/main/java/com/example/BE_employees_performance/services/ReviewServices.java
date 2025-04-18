@@ -23,8 +23,16 @@ public class ReviewServices {
         return  reviewRepository.getAllReviews(page, size);
     }
 
+    public List<ReviewReponse> getAllReviewsByEmployee(Integer accountId, Integer page, Integer size){
+        return  reviewRepository.getAllReviewsByEmployee(accountId, page, size);
+    }
+
     public ReviewPageParameters getReviewPageParameters(){
         return reviewRepository.getReviewPageParameters();
+    }
+
+    public ReviewPageParameters getReviewPageParametersByEmployee(Integer accountId) {
+        return  reviewRepository.getReviewPageParametersByEmployee(accountId);
     }
 
     public Object evaluateAssessment(Integer accountId, Integer assessmentId, EvaluateAssessmentRequest body){

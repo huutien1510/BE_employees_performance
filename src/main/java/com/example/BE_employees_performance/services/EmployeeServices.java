@@ -20,6 +20,10 @@ public class EmployeeServices {
         return employeeRepository.getAllEmployees(page, size);
     }
 
+    public EmployeeResponse getEmployeeById(Integer accountId){
+        return employeeRepository.getEmployeeById(accountId);
+    }
+
     public Integer getTotalElements(){
         return employeeRepository.getTotalElements();
     }

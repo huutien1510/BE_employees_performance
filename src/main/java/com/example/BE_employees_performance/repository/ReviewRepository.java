@@ -17,8 +17,14 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query(value = "call get_all_reviews(:pages,:size)", nativeQuery = true)
     public List<ReviewReponse> getAllReviews(@Param("pages") Integer page, @Param("size") Integer size);
 
+    @Query(value = "call get_all_reviews_by_employee(:accountId,:pages,:size)", nativeQuery = true)
+    public List<ReviewReponse> getAllReviewsByEmployee(@Param("accountId") Integer accountId,@Param("pages") Integer page, @Param("size") Integer size);
+
     @Query(value = "call get_review_page_parameters", nativeQuery = true)
     public ReviewPageParameters getReviewPageParameters();
+
+    @Query(value = "call get_review_page_parameters_by_employee(:accountId)", nativeQuery = true)
+    public ReviewPageParameters getReviewPageParametersByEmployee(@Param("accountId") Integer accountId);
 
     @Query(value = "call evaluate_assessment(:account_id,:assessment_id,:evaluate,:comments)", nativeQuery = true)
     public Object evaluateAssessment(@Param("account_id") Integer accountId,

@@ -1,6 +1,7 @@
 package com.example.BE_employees_performance.services;
 
 import com.example.BE_employees_performance.dto.response.KPANameResponse;
+import com.example.BE_employees_performance.dto.response.KPAResponse;
 import com.example.BE_employees_performance.repository.KPARepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,4 +21,7 @@ public class KPAServices {
         return kpaRepository.getAllByKpi(kpiID);
     }
 
+    public List<KPAResponse> getKPAByKpiYear(Integer kpiID, Integer employeeId){
+        return kpaRepository.getKPAByKpiYear(kpiID, employeeId);
+    }
 }

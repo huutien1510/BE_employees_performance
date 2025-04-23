@@ -3,6 +3,7 @@ package com.example.BE_employees_performance.services;
 import com.example.BE_employees_performance.dto.request.AccountRequest;
 import com.example.BE_employees_performance.dto.response.AccountResponse;
 import com.example.BE_employees_performance.dto.response.KPINameResponse;
+import com.example.BE_employees_performance.dto.response.KPIResponse;
 import com.example.BE_employees_performance.repository.KPIReposiroty;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -21,5 +22,9 @@ public class KPIServices {
 
     public List<KPINameResponse> getAllName(){
         return  kpiReposiroty.getAllName();
+    }
+
+    public List<KPIResponse> getKpiByYear(Integer year){
+        return kpiReposiroty.getKpiByYear(year);
     }
 }

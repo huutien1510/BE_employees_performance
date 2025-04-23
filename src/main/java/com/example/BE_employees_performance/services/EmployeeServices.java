@@ -1,5 +1,6 @@
 package com.example.BE_employees_performance.services;
 
+import com.example.BE_employees_performance.dto.response.EmployeeManagerResponse;
 import com.example.BE_employees_performance.dto.response.EmployeeResponse;
 import com.example.BE_employees_performance.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,12 @@ public class EmployeeServices {
         return employeeRepository.getAllEmployees(page, size);
     }
 
-    public EmployeeResponse getEmployeeById(Integer accountId){
-        return employeeRepository.getEmployeeById(accountId);
+    public EmployeeResponse getEmployeeById(Integer employeeId){
+        return employeeRepository.getEmployeeById(employeeId);
+    }
+
+    public EmployeeManagerResponse getEmployeeManager(Integer employeeId){
+        return  employeeRepository.getEmployeeManager(employeeId);
     }
 
     public Integer getTotalElements(){

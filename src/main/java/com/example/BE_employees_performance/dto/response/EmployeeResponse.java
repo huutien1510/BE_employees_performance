@@ -21,6 +21,8 @@ public class EmployeeResponse {
     private String phone;
     private String jobTitle;
     private Date birthDate;
+    private Date startDate;
+    private Date endDate;
     private String avatar;
     private Integer lineManagerId;
     private String lineManagerName;

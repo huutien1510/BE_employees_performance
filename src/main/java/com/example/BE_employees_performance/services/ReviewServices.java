@@ -1,8 +1,10 @@
 package com.example.BE_employees_performance.services;
 
 import com.example.BE_employees_performance.dto.request.EvaluateAssessmentRequest;
+import com.example.BE_employees_performance.dto.response.AssessmentReponse;
 import com.example.BE_employees_performance.dto.response.ReviewPageParameters;
 import com.example.BE_employees_performance.dto.response.ReviewReponse;
+import com.example.BE_employees_performance.dto.response.ReviewResult;
 import com.example.BE_employees_performance.entity.Review;
 import com.example.BE_employees_performance.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,19 +25,27 @@ public class ReviewServices {
         return  reviewRepository.getAllReviews(page, size);
     }
 
-    public List<ReviewReponse> getAllReviewsByEmployee(Integer accountId, Integer page, Integer size){
-        return  reviewRepository.getAllReviewsByEmployee(accountId, page, size);
+    public List<ReviewReponse> getAllReviewsByEmployee(Integer employeeId, Integer page, Integer size){
+        return  reviewRepository.getAllReviewsByEmployee(employeeId, page, size);
     }
 
     public ReviewPageParameters getReviewPageParameters(){
         return reviewRepository.getReviewPageParameters();
     }
 
-    public ReviewPageParameters getReviewPageParametersByEmployee(Integer accountId) {
-        return  reviewRepository.getReviewPageParametersByEmployee(accountId);
+    public ReviewPageParameters getReviewPageParametersByEmployee(Integer employeeId) {
+        return  reviewRepository.getReviewPageParametersByEmployee(employeeId);
     }
 
     public Object evaluateAssessment(Integer accountId, Integer assessmentId, EvaluateAssessmentRequest body){
         return reviewRepository.evaluateAssessment(accountId, assessmentId, body.getEvaluate(), body.getComments());
+    }
+
+    public Integer getOverallPerformanceByYear(Integer employeeId, Integer year){
+        return reviewRepository.getOverallPerformanceByYear(employeeId, year);
+    }
+
+    public ReviewResult getReviewResultById(Integer assessmentId){
+        return reviewRepository.getReviewResultById(assessmentId);
     }
 }

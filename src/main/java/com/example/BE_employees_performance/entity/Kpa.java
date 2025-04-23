@@ -23,7 +23,7 @@ public class Kpa  {
 
     @Lob
     private String description;
-    private Integer percent;
+    private Float percent;
 
     @ManyToOne
     @JoinColumn(name = "kpi_id")

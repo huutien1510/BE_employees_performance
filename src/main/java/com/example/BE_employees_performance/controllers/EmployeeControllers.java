@@ -1,9 +1,6 @@
 package com.example.BE_employees_performance.controllers;
 
-import com.example.BE_employees_performance.dto.response.ApiResponse;
-import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
-import com.example.BE_employees_performance.dto.response.AssessmentReponse;
-import com.example.BE_employees_performance.dto.response.EmployeeResponse;
+import com.example.BE_employees_performance.dto.response.*;
 import com.example.BE_employees_performance.services.EmployeeServices;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -33,13 +30,24 @@ public class EmployeeControllers {
     }
 
 
-    @GetMapping("/getEmployeeById/{accountId}")
-    public ApiResponse<EmployeeResponse> getEmployeeById(@PathVariable Integer accountId)
+    @GetMapping("/getEmployeeById/{employeeId}")
+    public ApiResponse<EmployeeResponse> getEmployeeById(@PathVariable Integer employeeId)
     {
         ApiResponse<EmployeeResponse> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all employees successfully");
-        apiResponse.setData(employeeServices.getEmployeeById(accountId));
+        apiResponse.setData(employeeServices.getEmployeeById(employeeId));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/getEmployeeManager/{employeeId}")
+    public ApiResponse<EmployeeManagerResponse> getEmployeeManager(@PathVariable Integer employeeId)
+    {
+        ApiResponse<EmployeeManagerResponse> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get employee manager successfully");
+        apiResponse.setData(employeeServices.getEmployeeManager(employeeId));
         return apiResponse;
     }
 

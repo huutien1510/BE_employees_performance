@@ -1,5 +1,6 @@
 package com.example.BE_employees_performance.services;
 
+import com.example.BE_employees_performance.dto.request.AssessmentCreateRequest;
 import com.example.BE_employees_performance.dto.request.AssessmentUpdateRequest;
 import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
 import com.example.BE_employees_performance.dto.response.AssessmentReponse;
@@ -20,13 +21,13 @@ import java.util.List;
 public class AssessmentServices {
     AssessmentRepository assessmentRepository;
 
-    public List<AssessmentReponse> getAllAssessmentByEmployee(Integer accountId, Integer page, Integer size){
-        return assessmentRepository.getAllAssessmentByEmployee(accountId,page,size);
+    public List<AssessmentReponse> getAllAssessmentByEmployee(Integer employeeId, Integer page, Integer size){
+        return assessmentRepository.getAllAssessmentByEmployee(employeeId,page,size);
     }
 
 
-    public AssessmentPageParameters getAssessmentByEmployeePageParameters(Integer accountId){
-        return assessmentRepository.getAssessmentByEmployeePageParameters(accountId);
+    public AssessmentPageParameters getAssessmentByEmployeePageParameters(Integer employeeId){
+        return assessmentRepository.getAssessmentByEmployeePageParameters(employeeId);
     }
 
 
@@ -40,12 +41,27 @@ public class AssessmentServices {
     }
 
 
-    public Object updateAssessment(Integer accountId, Integer assessmentId, AssessmentUpdateRequest body){
-        return assessmentRepository.updateAssessment(accountId, assessmentId,body.getKpiId(),body.getKpaId(),body.getEvaluate(),body.getComments(),body.getLink());
+    public Object updateAssessment(Integer employeeId, Integer assessmentId, AssessmentUpdateRequest body){
+        log.info(assessmentId.toString());
+        return assessmentRepository.updateAssessment(employeeId, assessmentId,body.getKpiId(),body.getKpaId(),body.getEvaluate(),body.getComments(),body.getLink());
     }
 
 
     public AssessmentReponse getAssessmentById(Integer assessmentId){
         return assessmentRepository.getAssessmentById(assessmentId);
+    }
+
+
+    public AssessmentCreateRequest createAssessment(Integer token, AssessmentCreateRequest body){
+        return assessmentRepository.createAssessment(token,
+                body.getEmployeeId(),
+                body.getLineManagerId(),
+                body.getKpiId(),
+                body.getKpaId(),
+                body.getEvaluate(),
+                body.getComments(),
+                body.getLink(),
+                body.getCreatedAt(),
+                body.getUpdatedAt());
     }
 }

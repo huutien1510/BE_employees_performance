@@ -1,5 +1,6 @@
 package com.example.BE_employees_performance.controllers;
 
+import com.example.BE_employees_performance.dto.request.AssessmentCreateRequest;
 import com.example.BE_employees_performance.dto.request.AssessmentUpdateRequest;
 import com.example.BE_employees_performance.dto.response.ApiResponse;
 import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
@@ -23,24 +24,24 @@ import java.util.List;
 public class AssessmentControllers {
     AssessmentServices assessmentServices;
 
-    @GetMapping("/getAllAssessmentByEmployee/{accountId}")
-    public ApiResponse<List<AssessmentReponse>> getAllAssessmentByEmployee(@PathVariable Integer accountId,
+    @GetMapping("/getAllAssessmentByEmployee/{employeeId}")
+    public ApiResponse<List<AssessmentReponse>> getAllAssessmentByEmployee(@PathVariable Integer employeeId,
                                                                            @RequestParam(defaultValue = "0") Integer page,
                                                                            @RequestParam(defaultValue = "10") Integer size){
         ApiResponse<List<AssessmentReponse>> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all assessment by employee successfully");
-        apiResponse.setData(assessmentServices.getAllAssessmentByEmployee(accountId,page,size));
+        apiResponse.setData(assessmentServices.getAllAssessmentByEmployee(employeeId,page,size));
         return apiResponse;
     }
 
 
-    @GetMapping("/getTotalElementsByEmployee/{accountId}")
-    public ApiResponse<AssessmentPageParameters> getAssessmentByEmployeePageParameters(@PathVariable Integer accountId){
+    @GetMapping("/getTotalElementsByEmployee/{employeeId}")
+    public ApiResponse<AssessmentPageParameters> getAssessmentByEmployeePageParameters(@PathVariable Integer employeeId){
         ApiResponse<AssessmentPageParameters> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get totals elements successfully");
-        apiResponse.setData(assessmentServices.getAssessmentByEmployeePageParameters(accountId));
+        apiResponse.setData(assessmentServices.getAssessmentByEmployeePageParameters(employeeId));
         return apiResponse;
     }
 
@@ -77,7 +78,6 @@ public class AssessmentControllers {
     }
 
 
-
     @PatchMapping("/updateAssessment/{assessmentId}")
     public ApiResponse<Object> updateAssessment(HttpServletRequest request,
                                                 @PathVariable Integer assessmentId,
@@ -86,6 +86,17 @@ public class AssessmentControllers {
         apiResponse.setStatus(200);
         apiResponse.setMessage("Update assessment successfully");
         apiResponse.setData(assessmentServices.updateAssessment(Integer.valueOf(request.getHeader("token")),assessmentId,body));
+        return apiResponse;
+    }
+
+
+    @PostMapping("/createAssessment")
+    public ApiResponse<AssessmentCreateRequest> createAssessment(HttpServletRequest request,
+                                                @RequestBody AssessmentCreateRequest body){
+        ApiResponse<AssessmentCreateRequest> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Update assessment successfully");
+        apiResponse.setData(assessmentServices.createAssessment(Integer.valueOf(request.getHeader("token")),body));
         return apiResponse;
     }
 

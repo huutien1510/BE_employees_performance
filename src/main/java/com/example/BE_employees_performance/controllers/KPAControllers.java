@@ -2,6 +2,7 @@ package com.example.BE_employees_performance.controllers;
 
 import com.example.BE_employees_performance.dto.response.ApiResponse;
 import com.example.BE_employees_performance.dto.response.KPANameResponse;
+import com.example.BE_employees_performance.dto.response.KPAResponse;
 import com.example.BE_employees_performance.services.KPAServices;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,17 @@ public class KPAControllers {
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all by KPI successfully");
         apiResponse.setData(kpaServices.getAllByKpi(kpiID));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/getKPAByKpiYear/{kpiID}/{employeeId}")
+    public ApiResponse<List<KPAResponse>> getKPAByKpiYear(@PathVariable Integer kpiID,
+                                                          @PathVariable Integer employeeId){
+        ApiResponse<List<KPAResponse>> apiResponse= new ApiResponse<List<KPAResponse>>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all by KPI successfully");
+        apiResponse.setData(kpaServices.getKPAByKpiYear(kpiID,employeeId));
         return apiResponse;
     }
 }

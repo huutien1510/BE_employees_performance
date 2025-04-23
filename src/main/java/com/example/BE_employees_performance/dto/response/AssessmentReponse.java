@@ -21,9 +21,11 @@ public class AssessmentReponse {
     private Integer employeeId;
     private String employeeName;
     private String employeeJobTitle;
+    private String employeeAvatar;
     private Integer lineManagerId;
     private String lineManagerName;
     private String lineManagerJobTitle;
+    private String lineManagerAvatar;
     private Integer kpaId;
     private String kpaName;
     private Integer kpiId;

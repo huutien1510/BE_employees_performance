@@ -1,8 +1,8 @@
 package com.example.BE_employees_performance.repository;
 
-import com.example.BE_employees_performance.dto.response.EmployeeResponse;
 import com.example.BE_employees_performance.dto.response.ReviewPageParameters;
 import com.example.BE_employees_performance.dto.response.ReviewReponse;
+import com.example.BE_employees_performance.dto.response.ReviewResult;
 import com.example.BE_employees_performance.entity.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
@@ -26,11 +25,17 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query(value = "call get_review_page_parameters_by_employee(:accountId)", nativeQuery = true)
     public ReviewPageParameters getReviewPageParametersByEmployee(@Param("accountId") Integer accountId);
 
-    @Query(value = "call evaluate_assessment(:account_id,:assessment_id,:evaluate,:comments)", nativeQuery = true)
-    public Object evaluateAssessment(@Param("account_id") Integer accountId,
+    @Query(value = "call evaluate_assessment(:accountId,:assessment_id,:evaluate,:comments)", nativeQuery = true)
+    public Object evaluateAssessment(@Param("accountId") Integer accountId,
                                       @Param("assessment_id") Integer assessmentId,
                                       @Param("evaluate") Integer evaluate,
                                       @Param("comments") String comments);
 
+    @Query(value = "call get_all_reviews_employee_by_year(:employeeId,:year)", nativeQuery = true)
+    public Integer getOverallPerformanceByYear(@Param("employeeId") Integer employeeId,
+                                               @Param("year") Integer year);
+
+    @Query(value = "select evaluate, comments, updated_at from review where assessment_id = :assessmentId" , nativeQuery = true)
+    public ReviewResult getReviewResultById(@Param("assessmentId") Integer assessmentId);
 
 }

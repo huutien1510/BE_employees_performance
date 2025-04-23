@@ -1,6 +1,7 @@
 package com.example.BE_employees_performance.repository;
 
 import com.example.BE_employees_performance.dto.response.AssessmentReponse;
+import com.example.BE_employees_performance.dto.response.EmployeeManagerResponse;
 import com.example.BE_employees_performance.dto.response.EmployeeResponse;
 import com.example.BE_employees_performance.entity.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +23,8 @@ public interface EmployeeRepository extends JpaRepository<Employees,Integer> {
             "    e.phone,\n" +
             "    e.job_title,\n" +
             "    e.birth_date,\n" +
+            "    e.start_date,\n" +
+            "    e.end_date,\n" +
             "    e.avatar,\n" +
             "    l.employee_id as line_manager_id,\n" +
             "    l.name as line_manager_name,\n" +
@@ -31,15 +34,19 @@ public interface EmployeeRepository extends JpaRepository<Employees,Integer> {
             "    d.department_id,\n" +
             "    d.department_name\n" +
             "    from \n" +
-            "    (select employee_id, name, email, phone, job_title, birth_date, avatar, department_id, account_id from employees) e\n" +
+            "    (select employee_id, name, email, phone, job_title, birth_date, start_date, end_date, avatar, department_id from employees) e\n" +
             "    left join\n" +
             "    (select employee_id, line_manager_id from manage_info where (now()>start_date and ((end_date is null) or (now()<end_date)))) m on e.employee_id = m.employee_id\n" +
             "    left join\n" +
             "    (select employee_id, name, job_title, email, avatar from employees) l on m.line_manager_id = l.employee_id\n" +
             "    join\n" +
             "    (select department_id, department_name from departments) d on e.department_id = d.department_id\n" +
-            "   where e.account_id = :accountId", nativeQuery = true)
-    public EmployeeResponse getEmployeeById(@Param("accountId") Integer accountId);
+            "   where e.employee_id = :employeeId", nativeQuery = true)
+    public EmployeeResponse getEmployeeById(@Param("employeeId") Integer employeeId);
+
+    @Query(value = "call get_employee_manager(:employeeId)", nativeQuery = true)
+    public EmployeeManagerResponse getEmployeeManager(@Param("employeeId") Integer employeeId);
+
 
     @Query(value = "select count(employee_id) from employees", nativeQuery = true)
     public Integer getTotalElements();

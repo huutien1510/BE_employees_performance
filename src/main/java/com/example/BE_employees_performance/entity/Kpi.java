@@ -22,7 +22,7 @@ public class Kpi {
     private String kpiName;
     private Integer kpiYear;
     private String type;
-    private Integer percent;
+    private Float percent;
 
     @Lob
     private String description;

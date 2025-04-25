@@ -3,6 +3,7 @@ package com.example.BE_employees_performance.repository;
 import com.example.BE_employees_performance.dto.request.AssessmentCreateRequest;
 import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
 import com.example.BE_employees_performance.dto.response.AssessmentReponse;
+import com.example.BE_employees_performance.dto.response.EmployeeResponse;
 import com.example.BE_employees_performance.entity.Assessment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -54,6 +55,7 @@ public interface AssessmentRepository extends JpaRepository<Assessment,Integer> 
             "  a.comments,\n" +
             "  a.link,\n" +
             "  a.status,\n" +
+            "  a.created_at,\n" +
             "  a.updated_at\n" +
             "\tFROM assessment a\n" +
             "\tJOIN (\n" +
@@ -82,4 +84,10 @@ public interface AssessmentRepository extends JpaRepository<Assessment,Integer> 
                                                     @Param("link") String link,
                                                     @Param("createdAt") Date createdAt,
                                                     @Param("updatedAt") Date updatedAt);
+
+    @Query(value = "call delete_assessment_by_id(:assessmentId)", nativeQuery = true)
+    public Integer deleteAssessmentById(@Param("assessmentId") Integer assessmentId);
+
+    @Query(value = "call get_all_assessment_by_name(:keyword)", nativeQuery = true)
+    public List<AssessmentReponse> searchByName(@Param("keyword") String keyword);
 }

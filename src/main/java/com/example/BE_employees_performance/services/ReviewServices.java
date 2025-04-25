@@ -38,7 +38,7 @@ public class ReviewServices {
     }
 
     public Object evaluateAssessment(Integer accountId, Integer assessmentId, EvaluateAssessmentRequest body){
-        return reviewRepository.evaluateAssessment(accountId, assessmentId, body.getEvaluate(), body.getComments());
+        return reviewRepository.evaluateAssessment(accountId, assessmentId, body.getEvaluate(), body.getComments(), body.getUpdatedAt());
     }
 
     public Integer getOverallPerformanceByYear(Integer employeeId, Integer year){
@@ -47,5 +47,9 @@ public class ReviewServices {
 
     public ReviewResult getReviewResultById(Integer assessmentId){
         return reviewRepository.getReviewResultById(assessmentId);
+    }
+
+    public List<ReviewReponse> searchByName(String keyword){
+        return reviewRepository.searchByName(keyword);
     }
 }

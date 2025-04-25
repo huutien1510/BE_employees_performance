@@ -24,7 +24,15 @@ public class KPIServices {
         return  kpiReposiroty.getAllName();
     }
 
+    public List<KPINameResponse> getAllNameByYear(Integer year){
+        return  kpiReposiroty.getAllNameByYear(year);
+    }
+
     public List<KPIResponse> getKpiByYear(Integer year){
         return kpiReposiroty.getKpiByYear(year);
+    }
+
+    public Float getEvaluationByKpi(Integer kpiId, Integer employeeid){
+        return kpiReposiroty.getEvaluationByKpi(kpiId, employeeid);
     }
 }

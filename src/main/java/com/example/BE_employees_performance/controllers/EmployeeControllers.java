@@ -61,4 +61,14 @@ public class EmployeeControllers {
         apiResponse.setData(employeeServices.getTotalElements());
         return apiResponse;
     }
+
+
+    @GetMapping("/searchByName")
+    public ApiResponse<List<EmployeeResponse>> searchByName(@RequestParam("keyword") String keyword){
+        ApiResponse<List<EmployeeResponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get totals elements successfully");
+        apiResponse.setData(employeeServices.searchByName(keyword));
+        return apiResponse;
+    }
 }

@@ -33,12 +33,33 @@ public class KPIControllers {
     }
 
 
+    @GetMapping("/getAllNameByYear")
+    public ApiResponse<List<KPINameResponse>> getAllNameByYear(@RequestParam("year") Integer year){
+        ApiResponse<List<KPINameResponse>> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all successfully");
+        apiResponse.setData(kpiServices.getAllNameByYear(year));
+        return apiResponse;
+    }
+
+
     @GetMapping("/getKpiByYear/{year}")
     public ApiResponse<List<KPIResponse>> getKpiByYear(@PathVariable Integer year){
         ApiResponse<List<KPIResponse>> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all successfully");
         apiResponse.setData(kpiServices.getKpiByYear(year));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/getEvaluationByKpi/{kpiId}/{employeeId}")
+    public ApiResponse<Float> getEvaluationByKpi(@PathVariable Integer kpiId,
+                                             @PathVariable Integer employeeId){
+        ApiResponse<Float> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all successfully");
+        apiResponse.setData(kpiServices.getEvaluationByKpi(kpiId, employeeId));
         return apiResponse;
     }
 

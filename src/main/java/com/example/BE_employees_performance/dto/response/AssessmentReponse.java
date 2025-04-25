@@ -34,5 +34,6 @@ public class AssessmentReponse {
     private String comments;
     private String link;
     private String status;
+    private Date createdAt;
     private Date updatedAt;
 }

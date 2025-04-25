@@ -64,4 +64,12 @@ public class AssessmentServices {
                 body.getCreatedAt(),
                 body.getUpdatedAt());
     }
+
+    public Integer deleteAssessmentById(Integer assessmentId){
+        return assessmentRepository.deleteAssessmentById(assessmentId);
+    }
+
+    public List<AssessmentReponse> searchByName(String keyword){
+        return assessmentRepository.searchByName(keyword);
+    }
 }

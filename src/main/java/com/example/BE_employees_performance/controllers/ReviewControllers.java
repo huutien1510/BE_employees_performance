@@ -71,7 +71,6 @@ public class ReviewControllers {
         ApiResponse<Object> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Update evaluate assessment successfully");
-        log.info(Integer.valueOf(link.getHeader("token")).toString());
         apiResponse.setData(reviewServices.evaluateAssessment(Integer.valueOf(link.getHeader("token")),assessmentId, body));
         return apiResponse;
     }
@@ -94,6 +93,16 @@ public class ReviewControllers {
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get totals elements by employee successfully");
         apiResponse.setData(reviewServices.getReviewResultById(assessmentId));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/searchByName")
+    public ApiResponse<List<ReviewReponse>> searchByName(@RequestParam("keyword") String keyword){
+        ApiResponse<List<ReviewReponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get totals elements successfully");
+        apiResponse.setData(reviewServices.searchByName(keyword));
         return apiResponse;
     }
 }

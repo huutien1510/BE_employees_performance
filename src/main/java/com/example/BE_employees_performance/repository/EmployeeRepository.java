@@ -51,4 +51,7 @@ public interface EmployeeRepository extends JpaRepository<Employees,Integer> {
     @Query(value = "select count(employee_id) from employees", nativeQuery = true)
     public Integer getTotalElements();
 
+    @Query(value = "call get_all_employees_by_name(:keyword)", nativeQuery = true)
+    public List<EmployeeResponse> searchByName(@Param("keyword") String keyword);
+
 }

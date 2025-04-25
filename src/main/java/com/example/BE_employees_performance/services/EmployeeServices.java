@@ -32,4 +32,8 @@ public class EmployeeServices {
     public Integer getTotalElements(){
         return employeeRepository.getTotalElements();
     }
+
+    public List<EmployeeResponse> searchByName(String keyword){
+        return employeeRepository.searchByName(keyword);
+    }
 }

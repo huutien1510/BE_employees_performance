@@ -45,6 +45,8 @@ public class SecurityConfig {
             "/employees/**",
             "/reviews",
             "/reviews/**",
+            "/departments",
+            "/departments/**",
     };
     @Value("${signer.key}")
     private String SIGNER_KEY;

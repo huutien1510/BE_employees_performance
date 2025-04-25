@@ -5,6 +5,7 @@ import com.example.BE_employees_performance.dto.request.AssessmentUpdateRequest;
 import com.example.BE_employees_performance.dto.response.ApiResponse;
 import com.example.BE_employees_performance.dto.response.AssessmentPageParameters;
 import com.example.BE_employees_performance.dto.response.AssessmentReponse;
+import com.example.BE_employees_performance.dto.response.EmployeeResponse;
 import com.example.BE_employees_performance.services.AssessmentServices;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
@@ -97,6 +98,26 @@ public class AssessmentControllers {
         apiResponse.setStatus(200);
         apiResponse.setMessage("Update assessment successfully");
         apiResponse.setData(assessmentServices.createAssessment(Integer.valueOf(request.getHeader("token")),body));
+        return apiResponse;
+    }
+
+
+    @DeleteMapping("/deleteAssessmentById/{assessmentId}")
+    public ApiResponse<Integer> deleteAssessmentById(@PathVariable Integer assessmentId){
+        ApiResponse<Integer> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Delete assessment successfully");
+        apiResponse.setData(assessmentServices.deleteAssessmentById(assessmentId));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/searchByName")
+    public ApiResponse<List<AssessmentReponse>> searchByName(@RequestParam("keyword") String keyword){
+        ApiResponse<List<AssessmentReponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get totals elements successfully");
+        apiResponse.setData(assessmentServices.searchByName(keyword));
         return apiResponse;
     }
 

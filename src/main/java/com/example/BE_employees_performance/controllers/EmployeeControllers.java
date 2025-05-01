@@ -30,6 +30,28 @@ public class EmployeeControllers {
     }
 
 
+    @GetMapping("/getAllEmployeesSideBar")
+    public ApiResponse<List<EmployeeSidebarResponse>> getAllEmployeesSideBar()
+    {
+        ApiResponse<List<EmployeeSidebarResponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all employees sidebar successfully");
+        apiResponse.setData(employeeServices.getAllEmployeesSideBar());
+        return apiResponse;
+    }
+
+
+    @GetMapping("/getAllManagerSideBar")
+    public ApiResponse<List<EmployeeSidebarResponse>> getAllManagerSideBar()
+    {
+        ApiResponse<List<EmployeeSidebarResponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all employees sidebar successfully");
+        apiResponse.setData(employeeServices.getAllManagerSideBar());
+        return apiResponse;
+    }
+
+
     @GetMapping("/getEmployeeById/{employeeId}")
     public ApiResponse<EmployeeResponse> getEmployeeById(@PathVariable Integer employeeId)
     {

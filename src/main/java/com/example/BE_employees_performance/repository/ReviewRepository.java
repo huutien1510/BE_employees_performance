@@ -17,6 +17,10 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query(value = "call get_all_reviews(:pages,:size)", nativeQuery = true)
     public List<ReviewReponse> getAllReviews(@Param("pages") Integer page, @Param("size") Integer size);
 
+    @Query(value = "call get_all_reviews_by_line_manager(:accountId,:pages,:size)", nativeQuery = true)
+    public List<ReviewReponse> getAllReviewsByLineManager(@Param("accountId") Integer accountId,@Param("pages") Integer page, @Param("size") Integer size);
+
+
     @Query(value = "call get_all_reviews_by_employee(:accountId,:pages,:size)", nativeQuery = true)
     public List<ReviewReponse> getAllReviewsByEmployee(@Param("accountId") Integer accountId,@Param("pages") Integer page, @Param("size") Integer size);
 
@@ -40,7 +44,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query(value = "select evaluate, comments, updated_at from review where assessment_id = :assessmentId" , nativeQuery = true)
     public ReviewResult getReviewResultById(@Param("assessmentId") Integer assessmentId);
 
-    @Query(value = "call get_all_reviews_by_name(:keyword)", nativeQuery = true)
-    public List<ReviewReponse> searchByName(@Param("keyword") String keyword);
+//    @Query(value = "call get_all_reviews_by_name(:keyword)", nativeQuery = true)
+//    public List<ReviewReponse> searchByName(@Param("keyword") String keyword);
 
 }

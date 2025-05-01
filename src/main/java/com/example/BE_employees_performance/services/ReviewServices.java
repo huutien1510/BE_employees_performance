@@ -25,6 +25,10 @@ public class ReviewServices {
         return  reviewRepository.getAllReviews(page, size);
     }
 
+    public List<ReviewReponse> getAllReviewsByLineManager(Integer employeeId, Integer page, Integer size){
+        return  reviewRepository.getAllReviewsByLineManager(employeeId, page, size);
+    }
+
     public List<ReviewReponse> getAllReviewsByEmployee(Integer employeeId, Integer page, Integer size){
         return  reviewRepository.getAllReviewsByEmployee(employeeId, page, size);
     }
@@ -49,7 +53,7 @@ public class ReviewServices {
         return reviewRepository.getReviewResultById(assessmentId);
     }
 
-    public List<ReviewReponse> searchByName(String keyword){
-        return reviewRepository.searchByName(keyword);
-    }
+//    public List<ReviewReponse> searchByName(String keyword){
+//        return reviewRepository.searchByName(keyword);
+//    }
 }

@@ -32,10 +32,22 @@ public class ReviewControllers {
     }
 
 
-    @GetMapping("/getAllReviewsByEmployee/{employeeId}")
-    public ApiResponse<List<ReviewReponse>> getAllReviewsByEmployee(@PathVariable("employeeId") Integer employeeId,
+    @GetMapping("/getAllReviewsByLineManager/{employeeId}")
+    public ApiResponse<List<ReviewReponse>> getAllReviewsByLineManager(@PathVariable("employeeId") Integer employeeId,
                                                                     @RequestParam(defaultValue = "0") Integer page,
                                                                     @RequestParam(defaultValue = "10") Integer size){
+        ApiResponse<List<ReviewReponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all reviews by employee successfully");
+        apiResponse.setData(reviewServices.getAllReviewsByLineManager(employeeId,page,size));
+        return apiResponse;
+    }
+
+
+    @GetMapping("/getAllReviewsByEmployee/{employeeId}")
+    public ApiResponse<List<ReviewReponse>> getAllReviewsByEmployee(@PathVariable("employeeId") Integer employeeId,
+                                                                       @RequestParam(defaultValue = "0") Integer page,
+                                                                       @RequestParam(defaultValue = "10") Integer size){
         ApiResponse<List<ReviewReponse>> apiResponse =  new ApiResponse<>();
         apiResponse.setStatus(200);
         apiResponse.setMessage("Get all reviews by employee successfully");
@@ -97,12 +109,12 @@ public class ReviewControllers {
     }
 
 
-    @GetMapping("/searchByName")
-    public ApiResponse<List<ReviewReponse>> searchByName(@RequestParam("keyword") String keyword){
-        ApiResponse<List<ReviewReponse>> apiResponse =  new ApiResponse<>();
-        apiResponse.setStatus(200);
-        apiResponse.setMessage("Get totals elements successfully");
-        apiResponse.setData(reviewServices.searchByName(keyword));
-        return apiResponse;
-    }
+//    @GetMapping("/searchByName")
+//    public ApiResponse<List<ReviewReponse>> searchByName(@RequestParam("keyword") String keyword){
+//        ApiResponse<List<ReviewReponse>> apiResponse =  new ApiResponse<>();
+//        apiResponse.setStatus(200);
+//        apiResponse.setMessage("Get totals elements successfully");
+//        apiResponse.setData(reviewServices.searchByName(keyword));
+//        return apiResponse;
+//    }
 }

@@ -1,9 +1,6 @@
 package com.example.BE_employees_performance.repository;
 
-import com.example.BE_employees_performance.dto.response.AssessmentReponse;
-import com.example.BE_employees_performance.dto.response.EmployeeManagerResponse;
-import com.example.BE_employees_performance.dto.response.EmployeeResponse;
-import com.example.BE_employees_performance.dto.response.EmployeeSidebarResponse;
+import com.example.BE_employees_performance.dto.response.*;
 import com.example.BE_employees_performance.entity.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +13,9 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employees,Integer> {
     @Query(value = "call get_all_employees(:pages,:size)", nativeQuery = true)
     public List<EmployeeResponse> getAllEmployees(@Param("pages") Integer page, @Param("size") Integer size);
+
+    @Query(value = "call get_all_employees_admin(:pages,:size)", nativeQuery = true)
+    public List<EmployeesAdminResponse> getAllEmployeesAdmin(@Param("pages") Integer page, @Param("size") Integer size);
 
     @Query(value = "call get_all_employees_sidebar", nativeQuery = true)
     public List<EmployeeSidebarResponse> getAllEmployeesSideBar();

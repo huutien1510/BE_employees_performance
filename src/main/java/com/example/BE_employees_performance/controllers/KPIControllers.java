@@ -6,6 +6,8 @@ import com.example.BE_employees_performance.dto.response.ApiResponse;
 import com.example.BE_employees_performance.dto.response.KPINameResponse;
 import com.example.BE_employees_performance.dto.response.KPIResponse;
 import com.example.BE_employees_performance.services.KPIServices;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -23,11 +25,21 @@ import java.util.List;
 public class KPIControllers {
     KPIServices kpiServices;
 
+    @GetMapping("/getAllKpi")
+    public ApiResponse<List<KPIResponse>> getAllKpi(){
+        ApiResponse<List<KPIResponse>> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all kpi successfully");
+        apiResponse.setData(kpiServices.getAllKpi());
+        return apiResponse;
+    }
+
+
     @GetMapping("/getAllName")
     public ApiResponse<List<KPINameResponse>> getAllName(){
         ApiResponse<List<KPINameResponse>> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(200);
-        apiResponse.setMessage("Get all successfully");
+        apiResponse.setMessage("Get all name successfully");
         apiResponse.setData(kpiServices.getAllName());
         return apiResponse;
     }
@@ -37,7 +49,7 @@ public class KPIControllers {
     public ApiResponse<List<KPINameResponse>> getAllNameByYear(@RequestParam("year") Integer year){
         ApiResponse<List<KPINameResponse>> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(200);
-        apiResponse.setMessage("Get all successfully");
+        apiResponse.setMessage("Get all name by year successfully");
         apiResponse.setData(kpiServices.getAllNameByYear(year));
         return apiResponse;
     }
@@ -47,7 +59,7 @@ public class KPIControllers {
     public ApiResponse<List<KPIResponse>> getKpiByYear(@PathVariable Integer year){
         ApiResponse<List<KPIResponse>> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(200);
-        apiResponse.setMessage("Get all successfully");
+        apiResponse.setMessage("Get all kpi by year successfully");
         apiResponse.setData(kpiServices.getKpiByYear(year));
         return apiResponse;
     }
@@ -58,8 +70,19 @@ public class KPIControllers {
                                              @PathVariable Integer employeeId){
         ApiResponse<Float> apiResponse = new ApiResponse<>();
         apiResponse.setStatus(200);
-        apiResponse.setMessage("Get all successfully");
+        apiResponse.setMessage("Get evaluation by kpi successfully");
         apiResponse.setData(kpiServices.getEvaluationByKpi(kpiId, employeeId));
+        return apiResponse;
+    }
+
+
+    @DeleteMapping("/deleteKpi/{kpiId}")
+    public ApiResponse<Integer> deleteKpi(HttpServletRequest request,
+                                          @PathVariable Integer kpiId){
+        ApiResponse<Integer> apiResponse = new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Delete KPI successfully");
+        apiResponse.setData(kpiServices.deleteKpi(kpiId, Integer.valueOf(request.getHeader("token"))));
         return apiResponse;
     }
 

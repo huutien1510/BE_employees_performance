@@ -30,6 +30,18 @@ public class EmployeeControllers {
     }
 
 
+    @GetMapping("/getAllEmployeesAdmin")
+    public ApiResponse<List<EmployeesAdminResponse>> getAllEmployeesAdmin(@RequestParam(defaultValue = "0") Integer page,
+                                                               @RequestParam(defaultValue = "10") Integer size)
+    {
+        ApiResponse<List<EmployeesAdminResponse>> apiResponse =  new ApiResponse<>();
+        apiResponse.setStatus(200);
+        apiResponse.setMessage("Get all employees successfully");
+        apiResponse.setData(employeeServices.getAllEmployeesAdmin(page,size));
+        return apiResponse;
+    }
+
+
     @GetMapping("/getAllEmployeesSideBar")
     public ApiResponse<List<EmployeeSidebarResponse>> getAllEmployeesSideBar()
     {

@@ -12,7 +12,8 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class KPAResponse {
     private Integer kpaId;
+    private Integer kpiId;
     private String kpaName;
     private Float percent;
-    private BigDecimal evaluate;
+    private String description;
 }

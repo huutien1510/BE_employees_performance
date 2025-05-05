@@ -20,6 +20,10 @@ import java.util.List;
 public class KPIServices {
     KPIReposiroty kpiReposiroty;
 
+    public List<KPIResponse> getAllKpi(){
+        return kpiReposiroty.getAllKpi();
+    }
+
     public List<KPINameResponse> getAllName(){
         return  kpiReposiroty.getAllName();
     }
@@ -34,5 +38,9 @@ public class KPIServices {
 
     public Float getEvaluationByKpi(Integer kpiId, Integer employeeid){
         return kpiReposiroty.getEvaluationByKpi(kpiId, employeeid);
+    }
+
+    public Integer deleteKpi(Integer kpiId, Integer accountId){
+        return kpiReposiroty.deleteKpi(kpiId,accountId);
     }
 }
